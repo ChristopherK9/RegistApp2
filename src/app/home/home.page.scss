@@ -1,0 +1,31 @@
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+ion-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+ion-card-title {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+ion-button {
+  margin-top: 20px;
+}
+
+.link-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.link-container a {
+  color: var(--ion-color-primary);
+  text-decoration: none;
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+<ion-content class="not-found-content">
+  <ion-grid class="not-found-grid">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" size-md="6" class="not-found-wrapper">
+        <ion-icon name="alert-circle-outline" class="error-icon"></ion-icon>
+        <h1 class="error-title">Error 404</h1>
+        <p class="error-message">La página que buscas no existe.</p>
+        <ion-button color="primary" expand="block" (click)="goHome()" shape="round">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          Volver al inicio
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
