@@ -1,27 +1,52 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border m-top: [10px]" style="background-color: #E1EAF9;">
   <ion-toolbar>
-    <ion-title>RegistrAPP</ion-title>
+    <ion-label>
+      <h2>RegistrApp</h2>
+      <p>Bienvenido, {{ user.name }}!</p>
+    </ion-label>
   </ion-toolbar>
+  
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">RegistrAPP</ion-title>
- 
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-text style="margin-left: 13px;">Bienvenido {{user.name}}</ion-text>
-  <div *ngIf="!user.isStudent">
-    <ion-button (click)="generateQR('1')" >Generar QR</ion-button>
-  </div>
-
-  <div *ngIf="user.isStudent">
-    <ion-button>Escanear QR</ion-button>
-  </div>
-
-  <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+<ion-content>
+    <section *ngIf="!user.isStudent" class="mt-5 px-1">
+      <!-- Contenedor del grid -->
+      <div class="grid grid-cols-2 gap-1">
+        <ion-card *ngFor="let class of classes">
+          <ion-card-content>
+            <!-- Encabezado con título y hora -->
+            <div class="flex justify-between items-center mb-3">
+              <!-- Nombre de la clase con ícono -->
+              <div class="flex items-center space-x-2">
+                <ion-icon name="book-outline" color="primary" size="medium"></ion-icon>
+                <h5 class="text-black">{{ class.name }}</h5>
+              </div>
+            </div>
+            <div class="mb-4">
+              <!-- Hora -->
+              <div class="flex items-center text-sm text-black space-x-2">
+                <ion-icon name="time-outline" color="medium"></ion-icon>
+                <span>{{ class.startTime | date:'HH:mm' }}</span>
+              </div>
+              <!-- Profesor -->
+              <div class="flex items-center text-sm text-black space-x-2 mt-2">
+                <ion-icon name="person-outline" color="medium"></ion-icon>
+                <span>{{ user.name }}</span>
+              </div>
+            </div>
+            <!-- Botón de acción -->
+            <div class="text-right">
+              <ion-button fill="solid" size="small" color="primary" class="rounded-full shadow-md" (click)="generateQR(class.id)">
+                <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+                Asistencia
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </section>
+  
 
   <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
     <ng-template>
@@ -41,5 +66,7 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+
+  <ion-button (click)="logout()">Logout</ion-button>
 
 </ion-content>
